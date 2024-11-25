@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: SpringEcom
+  datasource:
+    url: jdbc:postgresql://localhost:5432/telusko
+    username: postgres
+    password: passer
+    hikari:
+      auto-commit: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
