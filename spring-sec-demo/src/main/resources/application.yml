@@ -11,6 +11,10 @@ spring:
     user:
       name: telusko
       password: 1234
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 server:
   servlet:
     session:

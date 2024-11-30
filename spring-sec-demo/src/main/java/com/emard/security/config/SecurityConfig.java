@@ -23,7 +23,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(req -> req.disable())
-                .authorizeHttpRequests(req -> req.anyRequest().authenticated())
+                .authorizeHttpRequests(req -> req
+                        .requestMatchers("register").permitAll()
+                        .anyRequest().authenticated())
                 //.formLogin(Customizer.withDefaults()) stateless no need form login
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
