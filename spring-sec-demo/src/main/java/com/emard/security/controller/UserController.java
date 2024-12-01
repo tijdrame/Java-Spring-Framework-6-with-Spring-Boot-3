@@ -1,5 +1,6 @@
 package com.emard.security.controller;
 
+import com.emard.security.jwt.JwtService;
 import com.emard.security.model.User;
 import com.emard.security.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService service;
     private final AuthenticationManager authenticationManager;
+    private final JwtService jwtService;
     @PostMapping("register")
     public User register(@RequestBody User user){
         return service.saveUser(user);
@@ -27,7 +29,7 @@ public class UserController {
                         user.getUsername(), user.getPassword())
         );
         if (authentication.isAuthenticated())
-            return "Success";
+            return jwtService.generateToken(user.getUsername());
         return "Login Failed";
     }
 }
