@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: SpringOAuthDemo
+  security:
+    oauth2:
+      client:
+        registration:
+          # creer les credentials dans https://console.cloud.google.com/
+          #
+          google:
+            client-id: 719048675185-fudqf2bh0td5t80v3fpu6clegl96976l.apps.googleusercontent.com
+            client-secret: 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
+          # not the same id and secret il faut creer un client sur ton github
+          # Settings - Developper Settings - OAuth Apps - creer apps
+          github:
+            client-id: 628760597fb0cd92a95a
+            client-secret: d3a11aa55e4ab22b55380d819dc44f6bf5d93f21
+server:
+  port: 8000
