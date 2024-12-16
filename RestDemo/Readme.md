@@ -18,3 +18,7 @@ pour rouler le container
 docker run telustko/rest-demo:v2
 pour le lancer sur le port 8081 de la machine physique
 docker run -p 8081:8080  telustko/rest-demo:v2
+
+Pour creer l'image avec un docker file, le creer d'abord puis faire
+docker build -t telusko/rest-demo:v3 .
+et c fini
