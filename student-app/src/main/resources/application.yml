@@ -1,1 +1,14 @@
-spring.application.name=student-app
+spring:
+  application:
+    name: student-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/telusko
+    username: postgres
+    password: passer
+    hikari:
+      auto-commit: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8090
