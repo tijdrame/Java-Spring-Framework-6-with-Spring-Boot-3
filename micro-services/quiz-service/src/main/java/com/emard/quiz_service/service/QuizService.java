@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.emard.quiz_service.dao.QuizDao;
+import com.emard.quiz_service.feign.QuizInterface;
 import com.emard.quiz_service.model.QuestionWrapper;
 import com.emard.quiz_service.model.Quiz;
 import com.emard.quiz_service.model.Response;
@@ -20,13 +21,13 @@ import lombok.RequiredArgsConstructor;
 public class QuizService {
 
     private final QuizDao quizDao;
+    private final QuizInterface quizInterface;
     public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
-        List<Integer> questions = null;
-        /*List<Question> questions = questionDao.findRandomQuestionsByCategory(category, numQ);
+        List<Integer> questions = quizInterface.getQuestionsForQuiz(category, numQ).getBody();
         Quiz quiz = new Quiz();
         quiz.setTitle(title); 
-        quiz.setQuestions(questions);
-        quizDao.save(quiz);*/
+        quiz.setQuestionIds(questions);
+        quizDao.save(quiz);
         return new ResponseEntity<>("sucess", HttpStatus.CREATED);  
     }
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Integer id) {
