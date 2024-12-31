@@ -6,6 +6,6 @@ spring:
       discovery:
         locator:
           enabled: true
-          #lower-case-service-id: true
+          #lower-case-service-id: true  # pour ne pas tenir compte de la casse quiz-service au lieu de QUIZ-SERVICE
 server:
   port: 8765
