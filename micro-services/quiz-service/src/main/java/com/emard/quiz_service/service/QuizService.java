@@ -35,31 +35,12 @@ public class QuizService {
         if(quiz.isEmpty()) {
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
         }
-        List<QuestionWrapper> questions = new ArrayList<>();
-        /*for(Question q: quiz.get().getQuestions()) {
-            QuestionWrapper qw = new QuestionWrapper();
-            qw.setId(q.getId());
-            qw.setQuestionTitle(q.getQuestionTitle());
-            qw.setOption1(q.getOption1());
-            qw.setOption2(q.getOption2());
-            qw.setOption3(q.getOption3());
-            qw.setOption4(q.getOption4());
-            questions.add(qw);
-        }*/
-        return ResponseEntity.ok(questions);
+        ResponseEntity<List<QuestionWrapper>> questions = quizInterface.getQuestionsFromIds(quiz.get().getQuestionIds());
+        return questions;
     }
     public ResponseEntity<String> calculateResult(Integer id, List<Response> responses) {
-        Quiz quiz = quizDao.findById(id).get();
-        /*List<Question> questions = quiz.getQuestions();
-        int score = 0;
-        int i = 0;
-        for(Response response: responses) {
-            if(questions.get(i).getRightAnswer().equals(response.getResponse())) {
-                score++;
-            }
-            i++;
-        }*/
-        return new ResponseEntity<>("Your score is: " + 0 + "/" + 0, HttpStatus.OK);
+        int score = quizInterface.getScore(responses).getBody();
+        return new ResponseEntity<>("Your score is: " + score + "/" + responses.size(), HttpStatus.OK);
     }
 
 }
