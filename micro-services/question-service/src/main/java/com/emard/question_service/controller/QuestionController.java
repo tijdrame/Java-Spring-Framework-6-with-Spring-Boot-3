@@ -2,6 +2,7 @@ package com.emard.question_service.controller;
 
 import java.util.List;
 
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +18,17 @@ import com.emard.question_service.model.Response;
 import com.emard.question_service.service.QuestionService;
 
 import lombok.RequiredArgsConstructor;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/question")
 public class QuestionController {
     private final QuestionService questionService;
+    private final Environment environment;
     @GetMapping("/allQuestions")
     public ResponseEntity<List<Question>> getQuestions() {
+        System.out.println("========Port: " + environment.getProperty("local.server.port"));
         return questionService.getAllQuestions();
     }
 

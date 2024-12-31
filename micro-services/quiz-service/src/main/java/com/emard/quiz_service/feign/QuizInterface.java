@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.emard.quiz_service.model.QuestionWrapper;
 import com.emard.quiz_service.model.Response;
 
-@FeignClient(name = "question-service")
+@FeignClient(name = "QUESTION-SERVICE")
 public interface QuizInterface {
     @GetMapping("/question/generate/{categoryName}/{numQuestions}")
     public ResponseEntity<List<Integer>> getQuestionsForQuiz(@RequestParam String categoryName,
